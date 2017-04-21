@@ -39,7 +39,8 @@ typedef NS_ENUM(NSUInteger, SVProgressHUDMaskType) {
 
 typedef NS_ENUM(NSUInteger, SVProgressHUDAnimationType) {
     SVProgressHUDAnimationTypeFlat,     // default animation type, custom flat animation (indefinite animated ring)
-    SVProgressHUDAnimationTypeNative    // iOS native UIActivityIndicatorView
+    SVProgressHUDAnimationTypeNative,   // iOS native UIActivityIndicatorView
+    SVProgressHUDAnimationTypeCustom    // custom animation view type
 };
 
 typedef void (^SVProgressHUDShowCompletion)(void);
@@ -53,6 +54,7 @@ typedef void (^SVProgressHUDDismissCompletion)(void);
 @property (assign, nonatomic) SVProgressHUDMaskType defaultMaskType UI_APPEARANCE_SELECTOR;             // default is SVProgressHUDMaskTypeNone
 @property (assign, nonatomic) SVProgressHUDAnimationType defaultAnimationType UI_APPEARANCE_SELECTOR;   // default is SVProgressHUDAnimationTypeFlat
 @property (strong, nonatomic) UIView *containerView;                                // if nil then use default window level
+@property (assign, nonatomic) UIView *customAnimationView UI_APPEARANCE_SELECTOR;   // default is nil
 @property (assign, nonatomic) CGSize minimumSize UI_APPEARANCE_SELECTOR;            // default is CGSizeZero, can be used to avoid resizing for a larger message
 @property (assign, nonatomic) CGFloat ringThickness UI_APPEARANCE_SELECTOR;         // default is 2 pt
 @property (assign, nonatomic) CGFloat ringRadius UI_APPEARANCE_SELECTOR;            // default is 18 pt
@@ -80,6 +82,7 @@ typedef void (^SVProgressHUDDismissCompletion)(void);
 + (void)setDefaultMaskType:(SVProgressHUDMaskType)maskType;         // default is SVProgressHUDMaskTypeNone
 + (void)setDefaultAnimationType:(SVProgressHUDAnimationType)type;   // default is SVProgressHUDAnimationTypeFlat
 + (void)setContainerView:(UIView*)containerView;                    // default is window level
++ (void)setCustomAnimationView:(UIView *)customAnimationView;       // default is nil
 + (void)setMinimumSize:(CGSize)minimumSize;                         // default is CGSizeZero, can be used to avoid resizing for a larger message
 + (void)setRingThickness:(CGFloat)ringThickness;                    // default is 2 pt
 + (void)setRingRadius:(CGFloat)radius;                              // default is 18 pt

@@ -135,6 +135,10 @@ static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
     [self sharedView].containerView = containerView;
 }
 
++ (void)setCustomAnimationView:(UIView *)customAnimationView {
+    [self sharedView].customAnimationView = customAnimationView;
+}
+
 + (void)setMinimumSize:(CGSize)minimumSize {
     [self sharedView].minimumSize = minimumSize;
 }
@@ -1064,7 +1068,16 @@ static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
 
 - (UIView*)indefiniteAnimatedView {
     // Get the correct spinner for defaultAnimationType
-    if(self.defaultAnimationType == SVProgressHUDAnimationTypeFlat){
+    if(self.defaultAnimationType == SVProgressHUDAnimationTypeCustom){
+        // Check if spinner exists and is an object of different class
+        if (_indefiniteAnimatedView && ![_indefiniteAnimatedView isKindOfClass:[_customAnimationView class]]){
+            [_indefiniteAnimatedView removeFromSuperview];
+            _indefiniteAnimatedView = nil;
+        }
+        if(!_indefiniteAnimatedView && _customAnimationView){
+            _indefiniteAnimatedView = _customAnimationView;
+        }
+    } else if(self.defaultAnimationType == SVProgressHUDAnimationTypeFlat){
         // Check if spinner exists and is an object of different class
         if(_indefiniteAnimatedView && ![_indefiniteAnimatedView isKindOfClass:[SVIndefiniteAnimatedView class]]){
             [_indefiniteAnimatedView removeFromSuperview];
