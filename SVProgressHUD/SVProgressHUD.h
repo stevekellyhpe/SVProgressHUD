@@ -54,7 +54,7 @@ typedef void (^SVProgressHUDDismissCompletion)(void);
 @property (assign, nonatomic) SVProgressHUDMaskType defaultMaskType UI_APPEARANCE_SELECTOR;             // default is SVProgressHUDMaskTypeNone
 @property (assign, nonatomic) SVProgressHUDAnimationType defaultAnimationType UI_APPEARANCE_SELECTOR;   // default is SVProgressHUDAnimationTypeFlat
 @property (strong, nonatomic) UIView *containerView;                                // if nil then use default window level
-@property (assign, nonatomic) UIView *customAnimationView UI_APPEARANCE_SELECTOR;   // default is nil
+@property (strong, nonatomic) UIView *customAnimationView UI_APPEARANCE_SELECTOR;   // default is nil
 @property (assign, nonatomic) CGSize minimumSize UI_APPEARANCE_SELECTOR;            // default is CGSizeZero, can be used to avoid resizing for a larger message
 @property (assign, nonatomic) CGFloat ringThickness UI_APPEARANCE_SELECTOR;         // default is 2 pt
 @property (assign, nonatomic) CGFloat ringRadius UI_APPEARANCE_SELECTOR;            // default is 18 pt
